@@ -1,21 +1,21 @@
 package ru.skypro.homework.service.impl;
 
 import org.springframework.stereotype.Service;
-import ru.skypro.homework.dto.Comment;
-import ru.skypro.homework.dto.Comments;
-import ru.skypro.homework.dto.CreateOrUpdateComment;
+import ru.skypro.homework.dto.CommentDto;
+import ru.skypro.homework.dto.CommentsDto;
+import ru.skypro.homework.dto.CreateOrUpdateCommentDto;
 import ru.skypro.homework.service.CommentService;
 
 @Service
 public class CommentServiceImpl implements CommentService {
 
     @Override
-    public Comments getCommentsAds(Integer id) {
+    public CommentsDto getCommentsAds(Integer id) {
         return null;
     }
 
     @Override
-    public Comment setCommentAds(Integer id, CreateOrUpdateComment comment) {
+    public CommentDto setCommentAds(Integer id, CreateOrUpdateCommentDto comment) {
         return null;
     }
 
@@ -25,7 +25,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment updateComment(Integer adId, Integer commentId, CreateOrUpdateComment comment) {
+    public CommentDto updateComment(Integer adId, Integer commentId, CreateOrUpdateCommentDto comment) {
         return null;
     }
 }

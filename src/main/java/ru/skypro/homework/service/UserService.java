@@ -1,8 +1,8 @@
 package ru.skypro.homework.service;
 
 import org.springframework.web.multipart.MultipartFile;
-import ru.skypro.homework.dto.UpdateUser;
-import ru.skypro.homework.dto.User;
+import ru.skypro.homework.dto.UpdateUserDto;
+import ru.skypro.homework.dto.UserDto;
 
 import java.io.IOException;
 
@@ -10,9 +10,9 @@ public interface UserService {
 
     void setPassword(String currentPassword, String newPassword);
 
-    User getInformationUser();
+    UserDto getInformationUser();
 
-    UpdateUser setInformationUser(UpdateUser updateUser);
+    UpdateUserDto setInformationUser(UpdateUserDto updateUserDto);
 
     void setAvatar(MultipartFile avatar) throws IOException;
 }
