@@ -9,9 +9,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ru.skypro.homework.dto.NewPassword;
-import ru.skypro.homework.dto.UpdateUser;
-import ru.skypro.homework.dto.User;
+import ru.skypro.homework.dto.NewPasswordDto;
+import ru.skypro.homework.dto.UpdateUserDto;
+import ru.skypro.homework.dto.UserDto;
 import ru.skypro.homework.service.UserService;
 
 import java.io.IOException;
@@ -28,25 +28,25 @@ public class UserController {
 
     @Operation(summary = "Обновление пароля")
     @PostMapping("/set_password")
-    public ResponseEntity<Void> setPassword(@RequestBody NewPassword newPassword) {
-        if (newPassword.getNewPassword().length() <= 8 || newPassword.getNewPassword().length() >= 16) {
+    public ResponseEntity<Void> setPassword(@RequestBody NewPasswordDto newPasswordDto) {
+        if (newPasswordDto.getNewPassword().length() <= 8 || newPasswordDto.getNewPassword().length() >= 16) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         } else {
-            userService.setPassword(newPassword.getCurrentPassword(), newPassword.getNewPassword());
+            userService.setPassword(newPasswordDto.getCurrentPassword(), newPasswordDto.getNewPassword());
             return ResponseEntity.ok().build();
         }
     }
 
     @Operation(summary = "Получение информации об авторизованном пользователе")
     @GetMapping("/me")
-    public ResponseEntity<User> getInformationUser() {
+    public ResponseEntity<UserDto> getInformationUser() {
         return ResponseEntity.ok(userService.getInformationUser());
     }
 
     @Operation(summary = "Обновление информации об авторизованном пользователе")
     @PatchMapping("/me")
-    public  ResponseEntity<UpdateUser> setInformationUser(@RequestBody UpdateUser updateUser){
-        return ResponseEntity.ok(userService.setInformationUser(updateUser));
+    public  ResponseEntity<UpdateUserDto> setInformationUser(@RequestBody UpdateUserDto updateUserDto){
+        return ResponseEntity.ok(userService.setInformationUser(updateUserDto));
     }
 
     @Operation(summary = "Обновление аватара авторизованного пользователя")

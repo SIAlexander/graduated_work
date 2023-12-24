@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.skypro.homework.dto.Comment;
-import ru.skypro.homework.dto.Comments;
-import ru.skypro.homework.dto.CreateOrUpdateComment;
+import ru.skypro.homework.dto.CommentDto;
+import ru.skypro.homework.dto.CommentsDto;
+import ru.skypro.homework.dto.CreateOrUpdateCommentDto;
 import ru.skypro.homework.service.CommentService;
 
 @Slf4j
@@ -23,14 +23,14 @@ public class CommentController {
 
     @Operation(summary = "Получение комментариев объявления")
     @GetMapping("/{id}/comments")
-    public ResponseEntity<Comments> getCommentsAds(@PathVariable Integer id) {
+    public ResponseEntity<CommentsDto> getCommentsAds(@PathVariable Integer id) {
         return ResponseEntity.ok(commentService.getCommentsAds(id));
     }
 
     @Operation(summary = "Добавление комментария к объявлению")
     @PostMapping("/{id}/comments")
-    public ResponseEntity<Comment> setCommentAds(@PathVariable Integer id,
-                                                 @RequestBody CreateOrUpdateComment comment) {
+    public ResponseEntity<CommentDto> setCommentAds(@PathVariable Integer id,
+                                                    @RequestBody CreateOrUpdateCommentDto comment) {
         return ResponseEntity.ok(commentService.setCommentAds(id, comment));
     }
 
@@ -44,9 +44,9 @@ public class CommentController {
 
     @Operation(summary = "Обновление комментария")
     @PatchMapping("/{adId}/comments/{commentId}")
-    public ResponseEntity<Comment> updateComment(@PathVariable Integer adId,
-                                                 @PathVariable Integer commentId,
-                                                 @RequestBody CreateOrUpdateComment comment) {
+    public ResponseEntity<CommentDto> updateComment(@PathVariable Integer adId,
+                                                    @PathVariable Integer commentId,
+                                                    @RequestBody CreateOrUpdateCommentDto comment) {
         return ResponseEntity.ok(commentService.updateComment(adId, commentId, comment));
     }
 }
