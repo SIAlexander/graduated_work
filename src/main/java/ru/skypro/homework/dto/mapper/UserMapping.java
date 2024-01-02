@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import ru.skypro.homework.dto.UserDto;
 import ru.skypro.homework.model.User;
 
+import java.util.Arrays;
+
 @Service
 public class UserMapping {
     public UserDto mapToUserDto(User entity) {
@@ -14,7 +16,7 @@ public class UserMapping {
         dto.setLastName(entity.getLastName());
         dto.setPhone(entity.getPhone());
         dto.setRole(entity.getRole());
-        dto.setImage(entity.getImage());
+        dto.setImage("/avatars/" + entity.getId());
         return dto;
     }
 

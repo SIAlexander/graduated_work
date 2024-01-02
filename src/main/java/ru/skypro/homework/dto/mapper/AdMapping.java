@@ -9,7 +9,7 @@ public class AdMapping {
     public AdDto mapToAdDto(Ad entity) {
         AdDto dto = new AdDto();
         dto.setAuthor(entity.getUser().getId());
-        dto.setImage(entity.getImage());
+        dto.setImage("/images/" + entity.getPk());
         dto.setPk(entity.getPk());
         dto.setPrice(entity.getPrice());
         dto.setTitle(entity.getTitle());

@@ -23,8 +23,8 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
-        if (authService.login(loginDto.getUserName(), loginDto.getPassword())) {
+    public ResponseEntity<Void> login(@RequestBody LoginDto loginDto) {
+        if (authService.login(loginDto.getUsername(), loginDto.getPassword())) {
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -32,7 +32,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterDto registerDto) {
+    public ResponseEntity<Void> register(@RequestBody RegisterDto registerDto) {
         if (authService.register(registerDto)) {
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } else {

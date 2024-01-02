@@ -2,6 +2,8 @@ package ru.skypro.homework.dto;
 
 import lombok.Data;
 
+import java.sql.Timestamp;
+
 @Data
 public class CommentDto {
 
@@ -9,6 +11,6 @@ public class CommentDto {
     private Integer author;
     private String authorImage;
     private String authorFirstName;
-    private Integer createdAt;
+    private Timestamp createdAt;
     private String text;
 }

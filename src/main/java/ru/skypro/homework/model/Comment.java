@@ -2,6 +2,7 @@ package ru.skypro.homework.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -11,11 +12,14 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer pk;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     User user;
+    @ManyToOne
+    @JoinColumn(name = "ad_id")
+    Ad ad;
     @Column(name = "created_at")
-    private Integer createdAt;
+    private Timestamp createdAt;
     @Column(name = "text")
     @Size(min = 8, max = 64)
     private String text;
@@ -28,11 +32,19 @@ public class Comment {
         this.user = user;
     }
 
-    public Integer getCreatedAt() {
+    public Ad getAd() {
+        return ad;
+    }
+
+    public void setAd(Ad ad) {
+        this.ad = ad;
+    }
+
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Integer createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
