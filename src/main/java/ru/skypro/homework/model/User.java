@@ -1,11 +1,14 @@
 package ru.skypro.homework.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Type;
 import ru.skypro.homework.dto.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
@@ -37,6 +40,14 @@ public class User {
     private String password;
     @Column(name = "image")
     private String image;
+    @Column(name = "file_size")
+    private Long fileSize;
+    @Column(name = "media_type")
+    private String mediaType;
+    @Column(name = "data")
+    @Lob
+    @Type(type="org.hibernate.type.BinaryType")
+    private byte[] data;
 
     public Integer getId() {
         return id;
@@ -94,6 +105,30 @@ public class User {
         this.image = image;
     }
 
+    public Long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(Long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -132,9 +167,12 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", role=" + role +
-                ", image='" + image + '\'' +
-                ", username='" + userName + '\'' +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
+                ", image='" + image + '\'' +
+                ", fileSize=" + fileSize +
+                ", mediaType='" + mediaType + '\'' +
+                ", data=" + Arrays.toString(data) +
                 '}';
     }
 }

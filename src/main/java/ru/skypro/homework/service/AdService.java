@@ -1,5 +1,6 @@
 package ru.skypro.homework.service;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.web.multipart.MultipartFile;
 import ru.skypro.homework.dto.AdDto;
 import ru.skypro.homework.dto.AdsDto;
@@ -7,13 +8,12 @@ import ru.skypro.homework.dto.CreateOrUpdateAdDto;
 import ru.skypro.homework.dto.ExtendedAdDto;
 
 import java.io.IOException;
-import java.util.List;
 
 public interface AdService {
 
-    List<AdsDto> getAllAds();
+    AdsDto getAllAds();
 
-    AdDto setAd(CreateOrUpdateAdDto createOrUpdateAdDto, MultipartFile image) throws IOException;
+    AdDto setAd(CreateOrUpdateAdDto createOrUpdateAdDto, MultipartFile image, Authentication authentication) throws IOException;
 
     ExtendedAdDto getExtendedAd(Integer id);
 
@@ -21,8 +21,9 @@ public interface AdService {
 
     AdDto updateAd(Integer id, CreateOrUpdateAdDto createOrUpdateAdDto);
 
-    AdsDto getUserAds();
+    AdsDto getAdsMe(Authentication authentication);
 
     byte[] updateImageAd(Integer id, MultipartFile image) throws IOException;
 
+    byte[] getImage(Integer imageId) throws IOException;
 }

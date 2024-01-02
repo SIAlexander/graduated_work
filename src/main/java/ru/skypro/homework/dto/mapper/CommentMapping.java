@@ -10,7 +10,7 @@ public class CommentMapping {
         CommentDto dto = new CommentDto();
 
         dto.setAuthor(entity.getUser().getId());
-        dto.setAuthorImage(entity.getUser().getImage());
+        dto.setAuthorImage("/avatars/" + entity.getUser().getId());
         dto.setAuthorFirstName(entity.getUser().getFirstName());
         dto.setCreatedAt(entity.getCreatedAt());
         dto.setPk(entity.getPk());

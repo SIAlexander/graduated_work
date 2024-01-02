@@ -13,7 +13,7 @@ public class ExtendedAdMapping {
         dto.setAuthorLastName(entity.getUser().getLastName());
         dto.setDescription(entity.getDescription());
         dto.setEmail(entity.getUser().getUserName());
-        dto.setImage(entity.getImage());
+        dto.setImage("/images/" + entity.getPk());
         dto.setPhone(entity.getUser().getPhone());
         dto.setPrice(entity.getPrice());
         dto.setTitle(entity.getTitle());
