@@ -1,5 +1,6 @@
 package ru.skypro.homework.service.impl;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import ru.skypro.homework.dto.CommentDto;
 import ru.skypro.homework.dto.CommentsDto;
@@ -9,6 +10,7 @@ import ru.skypro.homework.model.Ad;
 import ru.skypro.homework.model.Comment;
 import ru.skypro.homework.repository.AdRepository;
 import ru.skypro.homework.repository.CommentRepository;
+import ru.skypro.homework.repository.UserRepository;
 import ru.skypro.homework.service.CommentService;
 
 import java.sql.Timestamp;
@@ -23,11 +25,13 @@ public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
     private final AdRepository adRepository;
     private final CommentMapping commentMapping;
+    private final UserRepository userRepository;
 
-    public CommentServiceImpl(CommentRepository commentRepository, AdRepository adRepository, CommentMapping commentMapping) {
+    public CommentServiceImpl(CommentRepository commentRepository, AdRepository adRepository, CommentMapping commentMapping, UserRepository userRepository) {
         this.commentRepository = commentRepository;
         this.adRepository = adRepository;
         this.commentMapping = commentMapping;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -56,7 +60,7 @@ public class CommentServiceImpl implements CommentService {
      * @return CommentDto
      */
     @Override
-    public CommentDto setCommentAds(Integer id, CreateOrUpdateCommentDto createCommentDto) {
+    public CommentDto setCommentAds(Integer id, CreateOrUpdateCommentDto createCommentDto, Authentication authentication) {
         Timestamp localDateTime = Timestamp.valueOf(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
         Comment comment = new Comment();
         Ad ad = adRepository.findByPk(id);
@@ -66,7 +70,7 @@ public class CommentServiceImpl implements CommentService {
         comment.setText(createCommentDto.getText());
         comment.setCreatedAt(localDateTime);
         comment.setAd(ad);
-        comment.setUser(ad.getUser());
+        comment.setUser(userRepository.findByUserName(authentication.getName()));
         commentRepository.save(comment);
         return commentMapping.mapToCommentDto(comment);
     }
