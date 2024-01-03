@@ -44,8 +44,8 @@ public class CommentController {
                                                     @RequestBody CreateOrUpdateCommentDto createCommentDto,
                                                     Authentication authentication) {
         if (authentication.getName() != null) {
-            return ResponseEntity.ok(commentService.setCommentAds(id, createCommentDto));
-        } else if (commentService.setCommentAds(id, createCommentDto) == null) {
+            return ResponseEntity.ok(commentService.setCommentAds(id, createCommentDto, authentication));
+        } else if (commentService.setCommentAds(id, createCommentDto, authentication) == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
