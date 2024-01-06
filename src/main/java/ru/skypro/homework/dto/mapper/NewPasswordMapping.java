@@ -6,7 +6,7 @@ import ru.skypro.homework.model.User;
 
 @Service
 public class NewPasswordMapping {
-    public NewPasswordDto mapToNewPasswordDto(User entity){
+    public NewPasswordDto mapToCurrentPasswordDto(User entity){
         NewPasswordDto dto = new NewPasswordDto();
         dto.setCurrentPassword(entity.getPassword());
         return dto;

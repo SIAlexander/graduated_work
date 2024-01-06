@@ -8,14 +8,14 @@ import ru.skypro.homework.model.User;
 public class LoginMapping {
     public LoginDto mapToLoginDto(User entity) {
         LoginDto dto = new LoginDto();
-        dto.setUserName(entity.getUserName());
+        dto.setUsername(entity.getUserName());
         dto.setPassword(entity.getPassword());
         return dto;
     }
 
     public User mapToUser(LoginDto dto) {
         User entity = new User();
-        entity.setUserName(dto.getUserName());
+        entity.setUserName(dto.getUsername());
         entity.setPassword(dto.getPassword());
         return entity;
     }
