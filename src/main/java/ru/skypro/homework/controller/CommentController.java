@@ -53,7 +53,6 @@ public class CommentController {
     }
 
     @Operation(summary = "Удаление комментария")
-    @Secured("ROLE_ADMIN")
     @DeleteMapping("/{adId}/comments/{commentId}")
     public ResponseEntity<Void> removeComment(@PathVariable Integer adId,
                                               @PathVariable Integer commentId,
